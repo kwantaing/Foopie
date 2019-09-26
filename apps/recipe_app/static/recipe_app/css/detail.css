@@ -1,0 +1,103 @@
+*{
+    /* outline: 1px dotted red; */
+}
+
+body {
+    margin: 10px;
+}
+
+.nav h1 {
+    font-size: 60px;
+    color: aliceblue;
+}
+
+.container{
+    position: relative;
+    height: 850px;
+    width: 100%;
+}
+.app_name{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+.details{
+    height: 100%;
+}
+.food_name{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 15px 0px 15px 15px;
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+}
+.like_btn{
+    display: inline-block;
+    height: 2%;
+    width: 5%;
+    vertical-align: top;
+}
+.heart{
+    height: 100%;
+    width: 100%;
+}
+.food_pic{
+    display: inline-block;
+    margin: 15px 0px 15px 15px ;
+    width: 32%;
+    border-radius: 50px 15px;
+
+}
+.instruction{
+    display: inline-block;
+    float: right;
+    width: 60%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 15px 15px 15px 4%;
+    height: 70%;
+    border: 1px solid grey;
+    position: absolute;
+}
+.instruction_bg{
+    position: absolute;
+    opacity: 0.4;
+    height: 100%;
+    width: 100%;
+
+}
+.instruction_info{
+    margin: 10px;
+    font-size: 18px;
+}
+.ins_heading{
+    font-size: 24px;
+    display: block;
+    font-weight: bold;
+}
+.info{
+    margin: 10px 0px 0px 15px ;
+    width: 32%;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #343a40;
+    padding: 5px 0px 0px 10px ;
+    border-radius: 5px;
+}
+.ingredient_box{
+    padding:5px;
+    width: 32%;
+    margin: 29px 0px 0px 15px ;
+    height: 26%;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #343a40;
+    border-radius: 5px;
+}
+.ingredient_heading{
+    font-size: 24px;
+    display: block;
+    font-weight: bold;
+}
+
+

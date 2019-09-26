@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recipe_app/css/browse.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="text-light col-5" href = "/welcome"><h1>Foopie</h1></a>
+            <form action="/search" method = POST class=" col-4 form-inline my-2 my-lg-0 customform mx-atuo"> 
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <form method=post class="form-inline my-2 my-lg-0 customform right_nav">
+                    {% csrf_token %}
+                 <p class="text-light"><a class="text-light">Welcome {{user.first_name}}!&nbsp&nbsp</a> <a class="text-light" href="/profile">Profile</a> | <a class="text-light" href="/logout">Sign Out</a></p>
+            </form>
+    </nav>
+    <div class="filter">
+        <div class="profile" style="text-align:center;">
+            <div class="picture" style="width:300px; height:300px;border:1px solid black;">
+                <img style="width:300px; height:300px;"src="{% static 'recipe_app/images/fieri.jpg'%}" alt="Profile Image">
+            </div>
+            <p>Name: {{user.first_name}} {{user.last_name}}</p>
+            <p>Member since {{user.created_on}}</p>
+            <a href="/new"><p>Add your own recipe</p></a>
+        </div>
+    </div>
+    <div class="container fav">
+        <h4>Your Favorite Recipes</h4>
+        {% for recipe in user.favorites.all %}
+        <div class="row">
+            <div class="picture">
+                <img src="{% static 'recipe_app/images/food.jpg' %}" alt="Image"/>
+            </div>
+            <div class="contents">
+                <h5 class="name"><a class="text-success" href="/recipe/view/{{recipe.recipe_id}}">{{recipe.title}}</a></h5>
+                <p class="desc">Ready in: {{recipe.readyInMinutes}} minutes</p>
+            </div>
+            <div class="col align-self-end fav_link">
+                <a href="/removefav/{{recipe.id}}">
+                <input type="image" src="{% static 'recipe_app/images/heartbroken.png'%}" alt="submit" class="heart">
+            </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% if user.myrecipes.all %}
+            {% for recipe in user.myrecipes.all %}
+            <div class="row">
+                    <div class="picture">
+                        <img src="{% static 'recipe_app/images/food.jpg' %}" alt="Image"/>
+                    </div>
+                    <div class="contents">
+                        <h5 class="name"><a class="text-success" href="/recipe/view/{{recipe.id}}">{{recipe.title}}</a></h5>
+                        <p class="desc">Ready in: {{recipe.readyInMinutes}} minutes</p>
+                    </div>
+                    <div class="col align-self-end fav_link">
+                            <a href="/removeRecipe/{{recipe.id}}">
+                            <input type="image" src="{% static 'recipe_app/images/heartbroken.png'%}" alt="submit" class="heart">
+                        </a>
+                    </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+

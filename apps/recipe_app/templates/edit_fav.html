@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recipe_app/css/detail.css' %}">
+    <title>{{recipe.title}}</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <h1>
+            <a href="/welcome"class="navbar-brand app_name">Foopie</a>
+        </h1>
+        <form action="/search" method=POST class="form-inline my-2 my-lg-0 customform"> 
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0 customform right_nav">
+                <p class="text-light"> <a class="text-light">Welcome {{user.first_name}}!&nbsp&nbsp</a><a href="/profile" class="text-light">Profile</a> | <a href="/logout" class="text-light"> Sign Out</a> </p> 
+        </form>
+    </nav>
+    <div class="container">
+        <div class="details">
+            <div class="title_box">                
+                <p class="food_name">{{recipe.title}}</p>
+                <form action="/like" method="POST" class="like_btn">{% csrf_token %}
+                    <input type="hidden" name="recipe_id" value = "{{recipe.id}}">
+                    <input type="hidden" name="title" value = "{{recipe.title}}">
+                    <input type="hidden" name="instructions" value="{{recipe.instructions}}">
+                    <input type="hidden" name="image" value="{{recipe.image}}">
+                    <input type="hidden" name="readyInMinutes" value = "{{recipe.readyInMinutes}}">
+                    <input type="image" src="{% static 'recipe_app/images/heart.png'%}" alt="submit" class="heart">
+                </form>
+            </div>
+            <img src="{{recipe.image}}" alt="Image" class="food_pic">
+            <div class="instructions">
+                    <img src="{% static 'recipe_app/images/cakebg.jpg'%}" class="instruction_bg">
+                    <p class="instruction_info"> 
+                        <span class="ins_heading">Instructions: </span>
+                        {{recipe.instructions}}
+                    </p>
+            </div>
+            <div class="info" style="padding-top: 3px;">    
+                <p>Ready in Minutes: {{recipe.readyInMinutes}}</p>
+                <p>Serving Size :{{recipe.servings}}</p>
+            </div>
+            <div class="ingredient_box" style="padding:10px;">
+                <p><span class="ingredient_heading">Ingredients:</span>
+                {% for ingredient in recipe.extendedIngredients %}
+                    <span>{{ingredient.name}}, </span>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

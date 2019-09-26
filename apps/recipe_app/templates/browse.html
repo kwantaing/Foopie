@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Browse</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recipe_app/css/browse.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="text-light col-5" href = "/welcome"><h1>Foopie</h1></a>
+        <form action="/search" method = POST class=" col-4 form-inline my-2 my-lg-0 customform mx-atuo"> 
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <form method=post class="form-inline my-2 my-lg-0 customform right_nav">
+                {% csrf_token %}
+             <p class="text-light"><a class="text-light">Welcome {{user.first_name}}!&nbsp&nbsp</a> <a class="text-light" href="/profile">Profile</a> | <a class="text-light" href="/logout">Sign Out</a></p>
+        </form>
+    </nav>
+
+    <div class="filter">
+        <h4>Search by Cuisine</h4>
+        <ul>
+            <li><a class="text-dark" href="/browse/american">American</a></li>
+            <li><a class="text-dark" href="/browse/chinese">Chinese</a></li>
+            <li><a class="text-dark" href="/browse/indian">Indian</a></li>
+            <li><a class="text-dark" href="/browse/italian">Italian</a></li>
+            <li><a class="text-dark" href="/browse/japanese">Japanese</a></li>
+            <li><a class="text-dark" href="/browse/korean">Korean</a></li>
+            <li><a class="text-dark" href="/browse/mexican">Mexican</a></li>
+            <li><a class="text-dark" href="/browse/thai">Thai</a></li>
+        </ul>
+        
+
+    </div>
+    <div class="container">
+        {% for recipe in recipes %}
+        <div class="row">
+            <div class="picture">
+                <img src="{% static 'recipe_app/images/food.jpg' %}" alt="Image"/>
+            </div>
+            <div class="contents">
+                <h5 class="name"><a class="text-success" href="/recipe/view/{{recipe.id}}">{{recipe.title}}</a></h5>
+                <p class="desc">Ready in: {{recipe.readyInMinutes}} minutes</p>
+            </div>
+            <div class="col align-self-end fav_link">
+                <form action="/recipe/view/{{recipe.id}}" method="POST" class="like_btn">
+                    {% csrf_token %}
+                    <input type="image" src="{% static 'recipe_app/images/heart.png'%}" alt="submit" class="heart">
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recipe_app/css/login.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foopie</title>
+</head>
+<body>
+
+    <!-- <img src=" {% static 'recipe_app/images/login_reg_background.jpg' %}" alt=""> -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <h1>Foopie</h1>
+    </nav>
+    <div class="error">
+            {% if messages%}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+    </div>
+    <p>{{results}}</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="case">
+                    <h2>Register</h2>
+                    <div class="reg">
+                        <form action="/register" method="post"> {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <p>
+                                        <label for="first_name">First Name</label>
+                                        <input class="form-control" type="text"name="first_name">
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input class="form-control"  type="text" name="last_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input class="form-control"  type="text" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pw">Password</label>
+                                    <input class="form-control"  type="password" name="pw">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwconfirm">Confirm Password</label>
+                                    <input class="form-control"  type="password" name="pwconfirm">
+                                </div>
+                                <br>
+                                <button class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="case">   
+                    <h2>Login</h2>
+                    <div class="login">
+                        <form action="/login"method="post"> {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control"  type="text" name="email">
+                                <label for="pw">Password</label>
+                                <input class="form-control"  type="password" name="password">
+                                <div class="error">
+                                    {% if messages.error %}
+                                    <ul class="messages">
+                                        {% for message in messages.error %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                                <br>
+                                <button class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

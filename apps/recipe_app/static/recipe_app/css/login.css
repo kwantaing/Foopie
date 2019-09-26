@@ -1,0 +1,37 @@
+body {
+    background-image: url("../images/login_reg_background.jpg");
+    background-size: cover;
+}
+
+h1 {
+    font-size: 60px;
+    color: aliceblue;
+}
+
+.case {
+    margin: 5%;
+}
+
+.case h2{
+    color: white;
+    font-size: 50px;
+}
+
+.reg {
+    background-color: white;
+    /* margin: 10px; */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 5px 10px 8px black;
+}
+
+.login {
+    background-color: white;
+    /* margin: 10px; */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 5px 10px 8px black;
+}
+.container{
+    margin-top:8%;
+}

@@ -1,0 +1,38 @@
+body {
+    padding: 15px;
+}
+
+nav h1 {
+    font-size: 60px;
+    color: aliceblue;
+}
+.container h1{
+    color:black;
+}
+.jumbotron,.container{
+    text-align:center;
+}
+.customform{
+    display:inline-block;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+
+.featured {
+    border: 1px solid black;
+    height: 200px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow:1px 2px 10px;
+    margin:5px;
+}
+.featured img{
+    border-radius: 5px;
+    max-height:100%;
+    width:100%;
+
+}

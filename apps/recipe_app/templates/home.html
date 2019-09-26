@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foopie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'recipe_app/css/home.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/welcome"class="navbar-brand">
+            <h1>Foopie</h1>
+        </a>
+        <form class="form-inline my-2 my-lg-0 customform right_nav">
+                <p class="text-light"> <a class="text-light">Welcome {{user.first_name}}!&nbsp&nbsp</a><a href="/profile" class="text-light">Profile</a> | <a href="/logout" class="text-light"> Sign Out</a> </p> 
+        </form>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>{{joke}}</h1>
+            <form action="/search" method=POST class="form-inline my-2 my-lg-0 customform"> {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <button class="btn btn-outline-success my-2 my-sm-0"><a href="/surprise">Surprise Me</a></button>
+        </div>
+    </div>
+    <nav class="navbar navbar-light bg-light"><h1 class="navbar-brand">Featured</h1></nav>
+    <div class="wrapper">
+        <div class="featured">
+            <a href="/recipe/view/{{featured1.id}}"><img src="{{featured1.image}}" alt=""></a>
+            <h5>{{featured1.title}}</h5>
+        </div>
+        <div class="featured">
+                <a href="/recipe/view/{{featured2.id}}"><img src="{{featured2.image}}" alt=""></a>
+                <h5>{{featured2.title}}</h5>
+        </div>
+        <div class="featured">
+                <a href="/recipe/view/{{featured3.id}}"><img src="{{featured3.image}}" alt=""></a>
+                <h5>{{featured3.title}}</h5>
+        </div>
+        <div class="featured">
+                <a href="/recipe/view/{{featured4.id}}"><img src="{{featured4.image}}" alt=""></a>
+                <h5>{{featured4.title}}</h5>
+        </div>
+    </div>
+</body>
+</html>

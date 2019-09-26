@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {{recipes}}
+    {% for recipe in recipes %}
+       <p><a href="/recipe/view/{{recipe.id}}">{{recipe.title}}</a></p>
+       <p></p>
+    {% endfor %}
+</body>
+</html>

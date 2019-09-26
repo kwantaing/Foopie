@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/add" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title :</label>
+            <input type="text" name = "title" class="form-control">
+            <label for="readyInMinutes">Ready in Minutes :</label>
+            <input type="text" name="readyInMinutes" class="form-control">
+            <label for="serving_size">Serving Size :</label>
+            <input type="text" name="serving_size" class="form-control">
+            <label for="ingredients">Ingredients :</label>
+            <textarea name="ingredients" class="form-control"></textarea>
+            <label for="instructions">Instructions :</label>
+            <textarea name="instructions" class="form-control"></textarea>
+            <button class="btn btn-primary">Add Recipe </button>
+        </div>
+    </form>
+</body>
+</html>
